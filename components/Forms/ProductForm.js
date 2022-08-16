@@ -4,9 +4,10 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import InputGroup from 'react-bootstrap/InputGroup';
+import styles from './index.module.css'
 
 export function Productform() {
-    
+
     const [product, setProduct] = useState({
         nombre: '',
         descripcion: '',
@@ -16,31 +17,24 @@ export function Productform() {
     const router = useRouter()
 
     useEffect(() => {
-
-        const getProduct = async () => {
-            const { data } = await axios.get('/api/products/' + router.query.id)
-            //setProduct({ nombre: data.nombre, descripcion: data.descripcion, precio: data.precio })
-            console.log(data);
-        }
-
         if (router.query.id) {
             getProduct(router.query.id);
-        
         }
-
-
     }, [])
 
-
+    const getProduct = async () => {
+        const { data } = await axios.get('/api/products/' + router.query.id)
+        setProduct({ nombre: data.nombre, descripcion: data.descripcion, precio: data.precio })
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (router.query.id) {
-            console.log('update')
+            //Update
             await axios.put('/api/products/' + router.query.id, product)
         } else {
+            //Alta
             const res = await axios.post('/api/products', product)
-            console.log(res);
             router.push('/');
         }
     };
@@ -50,23 +44,22 @@ export function Productform() {
 
 
     return (
-        <div>
-            <Form onSubmit={handleSubmit}>
+        <div className={styles.root}>
+            <Form className={styles.form} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" name="nombre" placeholder="Ingresar nombre" onChange={handleChange} value={product.nombre} />
                 </Form.Group>
 
-                <InputGroup className="mb-3">
-                    <InputGroup.Text>$</InputGroup.Text>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Precio</Form.Label>
                     <Form.Control type="number" name="precio" placeholder="Ingresar precio" onChange={handleChange} value={product.precio} />
-                    <InputGroup.Text>.00</InputGroup.Text>
-                </InputGroup>
+                </Form.Group>
 
-                <InputGroup className="mb-3">
-                    <InputGroup.Text>Descripcion</InputGroup.Text>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Descripcion</Form.Label>
                     <Form.Control as="textarea" name="descripcion" placeholder="Ingresar descripcion" onChange={handleChange} value={product.descripcion} />
-                </InputGroup>
+                </Form.Group>
 
                 <Button variant="primary" type="submit">
                     Guardar producto

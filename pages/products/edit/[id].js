@@ -1,6 +1,10 @@
 import React from 'react'
-import NewPage from '../new'
+import { Productform } from '../../../components/Forms/ProductForm'
 
+function editPage() {
+    return (
+      <Productform />
+    )
+  }
 
-
-export default NewPage
+export default editPage

@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from "../components/Navbar"
 import Footer from "../components/Footer"
+import styles from './index.module.css'
 
 function Layout(props) {
     const {
@@ -9,11 +10,10 @@ function Layout(props) {
     return (
         <>
             <Header />
-            <div className='bg-dark h-screen p-10'>
-                
-                    {children}
-                
+            <div className={styles.content}>
+                {children}
             </div>
+            <Footer/>
         </>
     )
 }

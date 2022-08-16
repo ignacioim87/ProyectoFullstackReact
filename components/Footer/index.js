@@ -1,16 +1,11 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card';
-import './index.module.css'
+import styles from './index.module.css'
 
 function Footer() {
   return (
-    <div>
-          <footer className='text-white py-1 bg-dark'>
-                Footer
-          </footer>
-
-    </div>
-  
+    <footer className={styles.footer}>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste quas unde cum beatae sed vitae accusamus cumque harum at, nisi reprehenderit ea ab nobis nesciunt voluptate sunt. Corrupti, impedit nulla?
+    </footer>
   )
 }
 
