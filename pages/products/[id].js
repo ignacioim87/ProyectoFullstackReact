@@ -1,10 +1,16 @@
+import React from 'react'
 import axios from 'axios'
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router'
+import Producto from '../../components/Product'
 
 function ProductPage({ product }) {
     const router = useRouter()
+
+    React.useEffect(() => {
+        if (!product) {
+            router.push('/');
+        }
+    }, [])
 
     const handleDelete = async (id) => {
         try {
@@ -15,21 +21,10 @@ function ProductPage({ product }) {
         }
     };
 
+    const handleEdit = () => router.push('/products/edit/' + product.id);
+
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" height="190px" width="200px" src='' />
-            <Card.Body>
-                <Card.Title>{product.nombre}</Card.Title>
-                <Card.Text>
-                    {product.descripcion}
-                </Card.Text>
-                <Card.Text>
-                    {product.precio}
-                </Card.Text>
-                <Button variant="primary" onClick={() => router.push('/products/edit/' + product.id)}>Editar</Button>
-                <Button variant="danger" onClick={() => handleDelete(product.id)}>Eliminar</Button>
-            </Card.Body>
-        </Card>
+        <Producto nombre={product.nombre} precio={product.precio} descripcion={product.descripcion} image={product.imagen} withButtons={true} handleEdit={handleEdit} handleDelete={handleDelete} />
     )
 }
 

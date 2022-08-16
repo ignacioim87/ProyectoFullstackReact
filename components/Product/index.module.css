@@ -2,24 +2,12 @@
     display: flex;
     justify-content: center;
     padding: 16px;
-    max-width: 200px;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    width: 100%;
-    min-height: 350px;
-    align-content: center;
-    justify-content: center;
-    gap: 15px;
-    color: white;
+    width: 350px;
+    height: 400px;
 }
 
 .card-body {
     padding: 2rem 0 !important;
-
 }
 
 .card-text {

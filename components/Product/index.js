@@ -1,22 +1,32 @@
 import React from 'react';
-import styles from './index.module.css';
-import Image from 'next/image';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Link from 'next/link'
 
-function Producto({ nombre, precio, descripcion }) {
+import styles from './index.module.css';
+
+function Producto({ id, nombre, precio, descripcion, image, withButtons, handleDelete, handleEdit }) {
   return (
-    <Card className={styles.root}>
-      <Card.Img variant="top" height="190px" width="200px" src='' />
-      <Card.Body>
-        <Card.Title>{nombre}</Card.Title>
-        <Card.Text>
-          {descripcion}
-        </Card.Text>
-        <Card.Text>
-          {precio}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <Link href={`/products/${id}`} key={id}>
+      <Card className={styles.root}>
+        <Card.Img variant="top" height="190px" width="200px" src={image} />
+        <Card.Body>
+          <Card.Title>{nombre}</Card.Title>
+          <Card.Text>
+            {descripcion}
+          </Card.Text>
+          <Card.Text>
+            {precio}
+          </Card.Text>
+        </Card.Body>
+        {withButtons && handleDelete && handleEdit &&
+          <>
+            <Button variant="primary" onClick={() => handleEdit()}>Editar</Button>
+            <Button variant="danger" onClick={() => handleDelete(id)}>Eliminar</Button>
+          </>}
+      </Card>
+    </Link>
+
   )
 }
 

@@ -7,14 +7,17 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import styles from './index.module.css'
 
 export function Productform() {
-
+    const router = useRouter()
     const [product, setProduct] = useState({
         nombre: '',
         descripcion: '',
         precio: 0
     })
 
-    const router = useRouter()
+    const getProduct = async () => {
+        const { data } = await axios.get('/api/products/' + router.query.id)
+        setProduct({ nombre: data.nombre, descripcion: data.descripcion, precio: data.precio })
+    }
 
     useEffect(() => {
         if (router.query.id) {
@@ -22,20 +25,24 @@ export function Productform() {
         }
     }, [])
 
-    const getProduct = async () => {
-        const { data } = await axios.get('/api/products/' + router.query.id)
-        setProduct({ nombre: data.nombre, descripcion: data.descripcion, precio: data.precio })
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (router.query.id) {
             //Update
-            await axios.put('/api/products/' + router.query.id, product)
+            try {
+                await axios.put('/api/products/' + router.query.id, product)
+                router.push('/');
+            } catch (err) {
+                console.error(err);
+            }
         } else {
             //Alta
-            const res = await axios.post('/api/products', product)
-            router.push('/');
+            try {
+                await axios.post('/api/products', product)
+                router.push('/');
+            } catch (err) {
+                console.error(err);
+            }
         }
     };
 
