@@ -1,71 +1,64 @@
 import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import axios from 'axios';
 import { useRouter } from 'next/router'
-import InputGroup from 'react-bootstrap/InputGroup';
+import DatabaseService from "../../services/api-mysql"
 import styles from './index.module.css'
 
-export function Productform() {
+export function Productform({ product }) {
     const router = useRouter()
-    const [product, setProduct] = useState({
+    const [dataForm, setDataForm] = React.useState({
         nombre: '',
-        descripcion: '',
-        precio: 0
+        precio: 0,
+        descripcion: ''
     })
 
-    const getProduct = async () => {
-        const { data } = await axios.get('/api/products/' + router.query.id)
-        setProduct({ nombre: data.nombre, descripcion: data.descripcion, precio: data.precio })
-    }
-
-    useEffect(() => {
-        if (router.query.id) {
-            getProduct(router.query.id);
+    React.useEffect(() => {
+        if (product) {
+            setDataForm(product);
         }
     }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (router.query.id) {
+        if (product) {
             //Update
             try {
-                await axios.put('/api/products/' + router.query.id, product)
-                router.push('/');
+                await DatabaseService.updateProduct(dataForm, router.query.id).finally(() => router.push('/'))
             } catch (err) {
                 console.error(err);
             }
         } else {
             //Alta
             try {
-                await axios.post('/api/products', product)
-                router.push('/');
+                await DatabaseService.saveProduct(dataForm).finally(() => router.push('/'))
             } catch (err) {
                 console.error(err);
             }
         }
     };
 
-    const handleChange = ({ target: { name, value } }) =>
-        setProduct({ ...product, [name]: value })
-
+    const handleChange = ({ target: { name, value } }) => {
+        console.log(dataForm);
+        setDataForm({ ...dataForm, [name]: value })
+    };
 
     return (
         <div className={styles.root}>
             <Form className={styles.form} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" name="nombre" placeholder="Ingresar nombre" onChange={handleChange} value={product.nombre} />
+                    <Form.Control type="text" name="nombre" placeholder="Ingresar nombre" onChange={handleChange} value={dataForm.nombre} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" >
                     <Form.Label>Precio</Form.Label>
-                    <Form.Control type="number" name="precio" placeholder="Ingresar precio" onChange={handleChange} value={product.precio} />
+                    <Form.Control type="number" name="precio" placeholder="Ingresar precio" onChange={handleChange} value={dataForm.precio} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" >
                     <Form.Label>Descripcion</Form.Label>
-                    <Form.Control as="textarea" name="descripcion" placeholder="Ingresar descripcion" onChange={handleChange} value={product.descripcion} />
+                    <Form.Control as="textarea" name="descripcion" placeholder="Ingresar descripcion" onChange={handleChange} value={dataForm.descripcion} />
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
