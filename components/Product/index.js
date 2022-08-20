@@ -7,7 +7,7 @@ import styles from './index.module.css';
 
 function Producto({ id, nombre, precio, descripcion, image, withButtons, handleDelete, handleEdit }) {
   return (
-    <Link href={`/products/${id}`} key={id}>
+    <Link href={`/products/${id}`}>
       <Card className={styles.root}>
         <Card.Img variant="top" height="190px" width="200px" src={image} />
         <Card.Body>

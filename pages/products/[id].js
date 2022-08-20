@@ -2,14 +2,24 @@ import React from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Producto from '../../components/Product'
+import DatabaseService from "../../services/api-mysql"
 
-function ProductPage({ product }) {
+function ProductPage() {
     const router = useRouter()
 
+    const [product, setProduct] = React.useState(null);
+
     React.useEffect(() => {
-        if (!product) {
-            router.push('/');
-        }
+        (async () => {
+            try {
+                const { data } = await DatabaseService.getProductById(router.query.id);
+                console.log(data);
+                setProduct(result)
+            } catch (err) {
+                console.error(err);
+            }
+
+        })()
     }, [])
 
     const handleDelete = async (id) => {
@@ -20,25 +30,16 @@ function ProductPage({ product }) {
             console.error(err);
         }
     };
-
+    
     const handleEdit = () => router.push('/products/edit/' + product.id);
+
+    if (!product) {
+        return <div>Loading</div>
+    }
 
     return (
         <Producto nombre={product.nombre} precio={product.precio} descripcion={product.descripcion} image={product.imagen} withButtons={true} handleEdit={handleEdit} handleDelete={handleDelete} />
     )
 }
-
-export const getServerSideProps = async (context) => {
-    const { data: product } = await axios.get('http://localhost:3000/api/products/' + context.query.id);
-
-    return {
-        props: {
-            product
-        }
-    }
-}
-
-
-
 
 export default ProductPage;

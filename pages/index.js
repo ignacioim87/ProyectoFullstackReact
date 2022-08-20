@@ -1,20 +1,26 @@
-import axios from 'axios'
+import axios from 'axios';
+import React from 'react'
 import Productos from '../components/Product/ProductList'
+import DatabaseService from '../services/api-mysql'
 
-function Home({ products }) {
+function Home() {
+  const [products, setProducts] = React.useState([]);
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const { data: { result } } = await DatabaseService.getProducts();
+        setProducts(result)
+      } catch (err) {
+        console.error(err);
+      }
+
+    })()
+  }, [])
+
   return (
     <Productos products={products} />
   )
-}
-
-export const getServerSideProps = async (context) => {
-  const { data: products } = await axios.get('http://localhost:3000/api/products');
-
-  return {
-    props: {
-      products
-    }
-  }
 }
 
 export default Home

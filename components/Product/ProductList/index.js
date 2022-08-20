@@ -7,7 +7,9 @@ function Productos({ products }) {
   return (
     <div className={styles.root}>
       {products.map(product => (
-          <Producto id={product.id} nombre={product.nombre} precio={product.precio} descripcion={product.descripcion} image={product.imagen} />
+          <div key={product.id}>
+            <Producto id={product.id} nombre={product.nombre} precio={product.precio} descripcion={product.descripcion} image={product.imagen} />
+          </div>
       ))}
     </div>
   )
