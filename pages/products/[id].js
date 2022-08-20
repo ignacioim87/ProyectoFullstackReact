@@ -12,8 +12,7 @@ function ProductPage() {
     React.useEffect(() => {
         (async () => {
             try {
-                const { data } = await DatabaseService.getProductById(router.query.id);
-                console.log(data);
+                const { data:{result} } = await DatabaseService.getProductById(router.query.id);
                 setProduct(result)
             } catch (err) {
                 console.error(err);
