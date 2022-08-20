@@ -17,7 +17,7 @@ export function Productform({ product }) {
         if (product) {
             setDataForm(product);
         }
-    }, [])
+    }, [product])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
