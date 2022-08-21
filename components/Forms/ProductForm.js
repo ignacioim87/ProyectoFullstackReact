@@ -10,7 +10,8 @@ export function Productform({ product }) {
     const [dataForm, setDataForm] = React.useState({
         nombre: '',
         precio: 0,
-        descripcion: ''
+        descripcion: '',
+        imagen: ''
     })
 
     React.useEffect(() => {
@@ -61,6 +62,11 @@ export function Productform({ product }) {
                     <Form.Control as="textarea" name="descripcion" placeholder="Ingresar descripcion" onChange={handleChange} value={dataForm.descripcion} />
                 </Form.Group>
 
+                <Form.Group className="mb-3" >
+                    <Form.Label>Imagen</Form.Label>
+                    <input className='form-control' name="imagen" placeholder="Ingresar URL de la imagen" type="text" onChange={handleChange} value={dataForm.imagen}/>
+                </Form.Group>
+                
                 <Button variant="primary" type="submit">
                     Guardar producto
                 </Button>

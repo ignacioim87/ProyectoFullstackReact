@@ -7,7 +7,7 @@ import styles from './index.module.css';
 
 function Producto({ id, nombre, precio, descripcion, image, withButtons, handleDelete, handleEdit }) {
   return (
-    <Card className={styles.root}>
+    <Card className={styles.root} text="dark" border="dark">
       <Link href={`/products/${id}`}>
         <Card.Img variant="top" height="190px" width="200px" src={image} />
       </Link>
@@ -16,14 +16,14 @@ function Producto({ id, nombre, precio, descripcion, image, withButtons, handleD
         <Card.Text>
           {descripcion}
         </Card.Text>
-        <Card.Text>
-          {precio}
-        </Card.Text>
       </Card.Body>
+      <Card.Footer>
+        Precio: ${precio}
+      </Card.Footer>
       {withButtons && handleDelete && handleEdit &&
         <>
-          <Button variant="primary" onClick={() => handleEdit()}>Editar</Button>
-          <Button variant="danger" onClick={() => handleDelete(id)}>Eliminar</Button>
+          <Button variant="dark" onClick={() => handleEdit()}>Editar</Button>
+          <Button variant="light" onClick={() => handleDelete(id)}>Eliminar</Button>
         </>}
     </Card>
 
