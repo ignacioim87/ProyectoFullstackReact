@@ -1,6 +1,12 @@
-import ServiceBase from "../ServiceBase";
+import axios from "axios";
+class DatabaseService   {
+    client;
 
-class DatabaseService extends ServiceBase {
+    constructor() {
+        this.client = axios.create({
+            baseURL: "http://localhost:3002/api/v1/"
+        })
+    }
 
     saveProduct = (data) => this.client.post(`/add-product`, data);
 

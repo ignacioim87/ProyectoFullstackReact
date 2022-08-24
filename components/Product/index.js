@@ -11,7 +11,7 @@ function Producto({ id, nombre, precio, descripcion, image, withButtons, handleD
       <Link href={`/products/${id}`}>
         <Card.Img variant="top" height="190px" width="200px" src={image} />
       </Link>
-      <Card.Body>
+      <Card.Body className={styles.body}>
         <Card.Title>{nombre}</Card.Title>
         <Card.Text className={styles.p}>
           {descripcion}

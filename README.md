@@ -1,3 +1,14 @@
+GUIA PARA CORRER AMBOS PROYECTOS:
+
+- SERVER:
+NPM CI
+NPM RUN SERVER
+
+- CLIENT:
+NPM CI
+NPM RUN DEV PARA MODO DESARROLLO
+NPM RUN START PARA MODO PRODUCCION
+
 COMPONENTES
 ____________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -125,9 +136,9 @@ Posee un router
 
     Este componente envia la informacion necesaria al producto para poder traer el card con la info correspondiente, los metodos handleEdit y handleDelete y el withButtoms (explicado al principio) en true.
 
-   - getStaticPaths: este metodo es utilizado para guardar de manera estatica las rutas para ingresar a cualquiera de todos los productos desde un principio haciendo un destructuring del id del producto para generar dicha ruta con cada id que exista.
+   - getStaticPaths: metodo utilizado para guardar de manera estatica las rutas para ingresar a cualquiera de todos los productos desde un principio haciendo un destructuring del id del producto para generar dicha ruta con cada id que exista.
 
-    - getStaticProps: este metodo es utilizado para guardar de manera estatica los props del producto desde un principio, haciendo un destructuring de data para devolver product y enviarlo al frontend desde el servidor.
+    - getStaticProps: metodo utilizado para guardar de manera estatica los props del producto desde un principio, haciendo un destructuring de data para devolver product y enviarlo al frontend desde el servidor.
 
 ~ LIST: client\pages\products\list.js
 
@@ -147,9 +158,9 @@ Ruta : client\pages\products\edit
 
     Devuelve un formulario de producto (PRODUCTFORM) pero en este caso le envia un producto, para que la logica dle form se adapte al caso de un UPDATE, mostrando los datos existentes del producto en cuestion para ser modificados.
 
-    - getStaticPaths: este metodo es utilizado para guardar de manera estatica las rutas para ingresar a cualquiera de todos los productos desde un principio haciendo un destructuring del id del producto para generar dicha ruta con cada id que exista.
+    - getStaticPaths: metodo  utilizado para guardar de manera estatica las rutas para ingresar a cualquiera de todos los productos desde un principio haciendo un destructuring del id del producto para generar dicha ruta con cada id que exista.
 
-    - getStaticProps: este metodo es utilizado para guardar de manera estatica los props del producto desde un principio, haciendo un destructuring de data para devolver product y enviarlo al frontend desde el servidor.
+    - getStaticProps: metodo  utilizado para guardar de manera estatica los props del producto desde un principio, haciendo un destructuring de data para devolver product y enviarlo al frontend desde el servidor.
 
 
 ____________________________________________________________________________________________________________________________________________________________________________________________
