@@ -8,6 +8,7 @@ NPM RUN SERVER
 NPM CI
 NPM RUN START (PARA MODO PRODUCCION)
 
+Se intentó desplegar por vercel pero por falta de tiempo y experiencia no pude solucionar un problema que habia con el servidor que desde vercel no resolvia las peticiones
 # EL SERVIDOR AL NO ESTAR DESPLEGADO EN PRODUCCION, AUN SE UTILIZA COMO BASEURL LOCALHOST
 
 **BASE DE DATOS DEPLOYADA EN HEROKU** 
