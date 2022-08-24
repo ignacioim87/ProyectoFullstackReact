@@ -9,8 +9,21 @@ NPM CI
 NPM RUN DEV PARA MODO DESARROLLO
 NPM RUN START PARA MODO PRODUCCION
 
+LA BASE DE DATOS NO ESTA DEPLOYADA
+
+TABLA
+
+producto
+- id INT
+- nombre VARCHAR(45)
+- descripcion VARCHAR(400)
+- imagen VARCHAR(500)
+
+IMPORTANTE RESPETAR LAS MINUSCULAS
+
 COMPONENTES
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
+
 
 CARPETA PRODUCT
 
