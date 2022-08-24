@@ -3,8 +3,15 @@ import { Productform } from '../../../components/Forms/ProductForm'
 import DatabaseService from "../../../services/api-mysql"
 
 function editPage({ product }) {
-  if (!product) {
-    return <div>loading..</div>
+  const [loading, setLoading] = React.useState(true)
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [])
+
+  if (!product || loading) {
+    return <div style={{ color: 'red', textAlign: 'center' }}>loading..</div>
   }
 
   return (
@@ -29,7 +36,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths ?? [],
-    fallback: false, // can also be true or 'blocking'
+    fallback: true, // can also be false or 'blocking'
   }
 }
 
@@ -45,6 +52,7 @@ export async function getStaticProps(context) {
 
   return {
     props: { product: product ?? {} }, // will be passed to the page component as props
+    revalidate: 1
   }
 }
 

@@ -4,7 +4,7 @@ class DatabaseService   {
 
     constructor() {
         this.client = axios.create({
-            baseURL: "us-cdbr-east-06.cleardb.net"
+            baseURL: "http://localhost:3002/api/v1/"
         })
     }
 

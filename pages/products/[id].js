@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 
 function ProductPage({ product }) {
     const router = useRouter()
+    const [loading, setLoading] = React.useState(true)
 
     const handleDelete = async (id) => {
         try {
@@ -17,8 +18,14 @@ function ProductPage({ product }) {
 
     const handleEdit = () => router.push('/products/edit/' + product.id);
 
-    if (!product) {
-        return <div>Loading</div>
+    React.useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, [])
+
+    if (!product || loading) {
+        return <div style={{ color: 'red', textAlign: 'center' }}>loading..</div>
     }
 
     return (
@@ -59,6 +66,7 @@ export async function getStaticProps(context) {
 
     return {
         props: { product: product ?? {} }, // will be passed to the page component as props
+        revalidate: 1
     }
 }
 
