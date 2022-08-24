@@ -13,7 +13,7 @@ function Producto({ id, nombre, precio, descripcion, image, withButtons, handleD
       </Link>
       <Card.Body>
         <Card.Title>{nombre}</Card.Title>
-        <Card.Text>
+        <Card.Text className={styles.p}>
           {descripcion}
         </Card.Text>
       </Card.Body>
@@ -26,8 +26,6 @@ function Producto({ id, nombre, precio, descripcion, image, withButtons, handleD
           <Button variant="light" onClick={() => handleDelete(id)}>Eliminar</Button>
         </>}
     </Card>
-
-
   )
 }
 

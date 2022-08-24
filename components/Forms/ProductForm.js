@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRouter } from 'next/router'
@@ -40,7 +40,6 @@ export function Productform({ product }) {
     };
 
     const handleChange = ({ target: { name, value } }) => {
-        console.log(dataForm);
         setDataForm({ ...dataForm, [name]: value })
     };
 
@@ -64,7 +63,7 @@ export function Productform({ product }) {
 
                 <Form.Group className="mb-3" >
                     <Form.Label>Imagen</Form.Label>
-                    <input className='form-control' name="imagen" placeholder="Ingresar URL de la imagen" type="text" onChange={handleChange} value={dataForm.imagen}/>
+                    <Form.Control name="imagen" placeholder="Ingresar URL de la imagen" type="text" onChange={handleChange} value={dataForm.imagen}/>
                 </Form.Group>
                 
                 <Button variant="primary" type="submit">
