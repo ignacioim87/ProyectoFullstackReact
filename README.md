@@ -1,4 +1,4 @@
-GUIA PARA CORRER AMBOS PROYECTOS:
+# GUIA PARA CORRER AMBOS PROYECTOS:
 
 - SERVER:
 NPM CI
@@ -11,8 +11,7 @@ NPM RUN START PARA MODO PRODUCCION
 
 LA BASE DE DATOS NO ESTA DEPLOYADA
 
-TABLA
-
+**TABLA** 
 producto
 - id INT
 - nombre VARCHAR(45)
@@ -25,7 +24,7 @@ COMPONENTES
 #
 
 
-CARPETA PRODUCT
+# CARPETA PRODUCT
 
 Ruta : client\components\Product
 
@@ -57,9 +56,9 @@ Ruta : client\components\Product
 
     Este componente se encarga de mapear la lista de productos que recibe al componente PRODUCTO, enviandole los datos correspondientes para cada uno de los mismos.
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA FORMS
+# CARPETA FORMS
 
 Ruta : client\components\Forms
 
@@ -78,9 +77,9 @@ Ruta : client\components\Forms
 
     Finalmente, se encuentra el Form correspondiente creado gracias a la dependencia React-Bootstrap que cuando hace un submit invoca a handleSubmit, cada vez que uno de los inputs cambia, este llama a handleChange para guardar el nuevo cambio del campo y tambien definiendo el valor de los inputs mediante value para que cada input sea asignado al campo correspondiente del objeto Product de manera correcta.
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA FOOTER
+# CARPETA FOOTER
 
 Ruta : client\components\Footer
 
@@ -88,9 +87,9 @@ Ruta : client\components\Footer
 
     Este componente es un footer sencillo con su correspondiente estilo. 
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA CAROUSEL
+# CARPETA CAROUSEL
 
 Ruta : client\components\Carousel
 
@@ -98,9 +97,9 @@ Ruta : client\components\Carousel
 
     Es un Carousel basico el cual tiene como estado base 0 asignado por el useState y si se clickea en las flechas este estado cambia a 1, 2 y se muestra el correspondiente item del carrousel.
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA NAVBAR
+# CARPETA NAVBAR
 
 Ruta : client\components\Navbar
 
@@ -108,9 +107,9 @@ Ruta : client\components\Navbar
 
     Es un Navbar basico que posee un brand con el nombre de la empresa y un dropdown con dos items que te llevan al listado de productos o a crear un nuevo producto mediante href
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA LAYOUT
+# CARPETA LAYOUT
 
 Ruta : client\layout
 
@@ -118,9 +117,9 @@ Ruta : client\layout
 
     Este componente es el que define el estandar de todas las paginas del frontend, este estandar se compone por el Componente HEADER (es el navbar) y luego children que es el componente que le pueda llegar a layout (es decir, el page de new, edit, etc), este children es envuelto en un div que importa el style generico de la pagina y finalmente el footer, de esta forma, en todas las paginas se puede observar el navbar, el footer y el estilo base de la app.
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA PAGES
+# CARPETA PAGES
 
 Ruta : client\pages
 
@@ -132,9 +131,9 @@ Ruta : client\pages
 
     Esta pagina es la que muestra el inicio de la app, con el carousel, navbar y footer correspondiente.
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA PRODUCTS CON SUS PAGES
+# CARPETA PRODUCTS CON SUS PAGES
 
 Ruta : client\pages\products
 
@@ -161,9 +160,8 @@ Posee un router
 
     Es una pagina que llama al componente PRODUCTFORM, su funcionalidad fue detallada anteriormente.
 
-____________________________________________________________________________________________________________________________________________________________________________________________
-
-CARPETA EDIT DENTRO DE PAGES/PRODUCTS
+#
+# CARPETA EDIT DENTRO DE PAGES/PRODUCTS
 
 Ruta : client\pages\products\edit
 
@@ -176,16 +174,8 @@ Ruta : client\pages\products\edit
     - getStaticProps: metodo  utilizado para guardar de manera estatica los props del producto desde un principio, haciendo un destructuring de data para devolver product y enviarlo al frontend desde el servidor.
 
 
-____________________________________________________________________________________________________________________________________________________________________________________________
+#
 
-CARPETA SERVICES
+# CARPETA API-MYSQL DENTRO DE SERVICES
 
-Ruta : client\services
-
-~ SERVICEBASE:  
-
-____________________________________________________________________________________________________________________________________________________________________________________________
-
-CARPETA API-MYSQL DENTRO DE SERVICES
-
-~ DATABASESERVICE: 
+~ DATABASESERVICE: Contiene los endpoints que apuntan al servidor
