@@ -21,7 +21,7 @@ export async function getStaticPaths() {
   } catch (err) {
     console.error(err);
   }
-  const paths = products.map((product) => ({
+  const paths = products?.map((product) => ({
     params: {
       id: `${product.id}`
     }
